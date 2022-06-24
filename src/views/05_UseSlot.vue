@@ -2,23 +2,14 @@
   <div id="container">
     <div id="app">
       <h3>案例：折叠面板</h3>
-      <Pannel>
-        <!-- 需求: 插槽时, 使用组件内变量 -->
-        <!-- scope变量: {row: defaultObj} -->
-        <template v-slot="scope">
-          <p>{{ scope.row.defaultTwo }}</p>
-        </template>
-      </Pannel>
+      <!-- 需求: 插槽时, 使用组件内变量 -->
+      <!-- scope变量: {row: defaultObj} -->
     </div>
   </div>
 </template>
 
 <script>
-import Pannel from "../components/05/Pannel";
 export default {
-  components: {
-    Pannel,
-  },
 };
 </script>
 

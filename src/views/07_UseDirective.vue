@@ -1,8 +1,7 @@
 <template>
   <div>
-      <!-- <input type="text" v-gfocus> -->
-      <input type="text" v-focus>
-      <p v-color="colorStr">修改文字颜色</p>
+      <input type="text">
+      <p>修改文字颜色</p>
   </div>
 </template>
 
@@ -18,13 +17,6 @@ export default {
     data(){
         return {
             colorStr: 'red'
-        }
-    },
-    directives: {
-        focus: {
-            inserted(el){
-                el.focus()
-            }
         }
     }
 }
