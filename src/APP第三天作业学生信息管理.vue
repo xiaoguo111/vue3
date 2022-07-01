@@ -2,21 +2,21 @@
   <div id="app">
     <div>
       <span>姓名:</span>
-      <input type="text" v-model.trim="name" />
+      <input type="text" v-model.trim="name" placeholder="请输入姓名" />
     </div>
     <div>
       <span>年龄:</span>
-      <input type="number" v-model.trim.number="age" />
+      <input type="number" v-model.trim.number="age" placeholder="请输入年龄" />
     </div>
     <div>
       <span>性别:</span>
       <select v-model="sex">
-        <option value="男">男</option>
-        <option value="女">女</option>
+        <option :value="1">男</option>
+        <option :value="0">女</option>
       </select>
     </div>
     <div>
-      <button @click="fn">添加/修改</button>
+      <button @click="fn">{{ change ? '修改' : '添加' }}</button>
     </div>
     <div>
       <table border="1" cellpadding="10" cellspacing="0">
@@ -31,7 +31,7 @@
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.age }}</td>
-          <td>{{ item.sex }}</td>
+          <td>{{ { 1: '男', 0: '女' }[item.sex] }}</td>
           <td>
             <button @click="del(item.id)">删除</button>
             <button @click="del1(item.id)">编辑</button>
@@ -50,30 +50,50 @@ export default {
           id: 1,
           name: 'tom',
           age: 19,
-          sex: '男',
+          sex: 1,
         },
         {
           id: 2,
           name: 'jone',
           age: 21,
-          sex: '女',
+          sex: 0,
         },
       ],
       name: '',
       age: '',
-      sex: '',
+      sex: 1,
+      change: false,
     };
   },
   methods: {
     fn() {
+      if (this.change) {
+        // 说明处于编辑状态
+        // 改完之后的数据保存进去
+        // 当前这个数据的id
+        const index = this.list.findIndex((ele) => ele.id == this.currentId);
+        this.arr[index].name = this.name;
+        this.arr[index].age = this.age;
+        this.arr[index].sex = this.sex;
+        this.currentId = '';
+        this.change = false; //再次便会添加
+        this.clearFn();
+        alert('修改完成');
+        return;
+      }
       if (this.name == '' || this.age == '' || this.sex == '')
         return alert('请填写必填项');
+      const id = this.arr[this.arr.length - 1]
+        ? this.arr[this.arr.length - 1].id + 1
+        : 100;
       this.arr.push({
-        id: this.arr[this.arr.length - 1].id + 1,
+        id: id,
         name: this.name,
         age: this.age,
         sex: this.sex,
       });
+      this.clearFn();
+      alert('添加完成');
     },
     del(val) {
       const index = this.arr.findIndex((ele) => ele.id == val);
@@ -87,7 +107,20 @@ export default {
       this.age = this.arr[idd].age;
       this.sex = this.arr[idd].sex;
     },
-   
+  //  del1(data) {
+  //     this.change = true;
+  //     console.log(data);
+  //     this.name = data.name;
+  //     this.age = data.age;
+  //     this.sex = data.sex;
+  //     // 当前这个数据的id 要保存下来
+  //     this.currentId = data.id;
+  //   },
+    clearFn() {
+      this.name = '';
+      this.age = '';
+      this.sex = 1;
+    },
   },
 };
 </script>
