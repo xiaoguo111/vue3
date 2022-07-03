@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>全选:</span>
-    <input type="checkbox" v-model="isall"/>
+    <input type="checkbox"  v-model="isall"/>
     <button @click="btn">反选</button>
     <ul>
       <li v-for="(item,index) in arr" :key="index">
@@ -38,12 +38,13 @@ export default {
   },
   computed: {
     isall:{
-      get(){
-        return this.arr.every((ele)=>ele.c)
+       set(val){
+       this.arr.forEach((ele)=>ele.c=val)
       },
-      set(val){
-       this.arr.forEach((ele)=>ele.c==val)
+      get(){
+        return this.arr.every((ele)=>ele.c===true)
       }
+     
     }
   },
   methods: {
