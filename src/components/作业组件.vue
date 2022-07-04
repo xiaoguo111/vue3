@@ -102,6 +102,9 @@ export default {
           this.list = res.data.data;
         });
       });
+       this.bookObj.bookname='';
+      this.bookObj.author='';
+      this.bookObj.publisher=''
     },
     del(val) {
       const index = this.list.findIndex((ele) => ele.id === val);
