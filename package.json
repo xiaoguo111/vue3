@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element": "^0.1.4",
+    "moment": "^2.29.3",
     "vue": "^2.6.11"
   },
   "devDependencies": {
@@ -38,5 +40,8 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "main": "index.js",
+  "author": "xiaoguo <348383021@qq.com>",
+  "license": "MIT"
 }

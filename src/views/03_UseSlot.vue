@@ -2,15 +2,23 @@
   <div id="container">
     <div id="app">
       <h3>案例：折叠面板</h3>
-      
+      <panel>
+      <p>寒雨连江夜入吴,</p>
+      <p>平明送客楚山孤。</p>
+      <slot></slot>
+      <p>洛阳亲友如相问，</p>
+      <p>一片冰心在玉壶。</p>
+      <img src="../assets/a.jpg" alt="">
+      </panel>
     </div>
   </div>
 </template>
 
 <script>
-
+import panel from '../components/Panel.vue'
 export default {
   components: {
+    panel,
   },
 };
 </script>

@@ -4,12 +4,21 @@
       <h3>案例：折叠面板</h3>
       <!-- 需求: 插槽时, 使用组件内变量 -->
       <!-- scope变量: {row: defaultObj} -->
+     <xiao>
+       <template v-slot:idd="guo">
+       {{guo.row.one}} , {{guo.row.two}}
+      </template>
+     </xiao>
     </div>
   </div>
 </template>
 
 <script>
+import xiao from '../components/Panel.vue'
 export default {
+  components:{
+    xiao
+  }
 };
 </script>
 

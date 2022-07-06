@@ -1,16 +1,19 @@
 <template>
   <div>
-      <button>账号密码填写</button>
-      <button>个人信息填写</button>
+      <button @click="comname='userName'">账号密码填写</button>
+      <button @click="comname='UserInfo'">个人信息填写</button>
 
       <p>下面显示注册组件-动态切换:</p>
       <div style="border: 1px solid red;">
-        
+        <component :is="comname"></component>
       </div>
   </div>
 </template>
 
 <script>
+import UserInfo from '../components/UserName.vue'
+import UserName from '../components/UserInfo.vue'
+
 // 目标: 练习动态组件的使用
 // 场景: 同一个挂载点要切换 不同组件 显示
 // 需求: 点击按钮切换组件
@@ -22,7 +25,12 @@
 export default {
     data(){
         return {
+            comname:'UserName'
         }
+    },
+    components:{
+        UserInfo,
+        UserName
     }
 }
 </script>
